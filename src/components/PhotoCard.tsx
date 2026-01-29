@@ -13,7 +13,7 @@ export function PhotoCard({ src, title, year, aspectRatio = "landscape" }: Photo
   };
 
   return (
-    <div className="photo-card masonry-item">
+    <div className="photo-card masonry-item group">
       <div className={`relative overflow-hidden ${aspectClasses[aspectRatio]}`}>
         <img
           src={src}

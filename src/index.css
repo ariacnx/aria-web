@@ -127,7 +127,7 @@
   }
 
   .photo-card {
-    @apply relative overflow-hidden cursor-pointer group;
+    @apply relative overflow-hidden cursor-pointer;
   }
 
   .photo-card img {
