@@ -1,40 +1,31 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-interface NavItem {
-  title: string;
-  href: string;
-}
+const snapPhotography = [
+  "Chalkak.wedding - Sydney",
+  "Chalkak.couple - Melbourne",
+  "Fashion snap",
+  "Chalkak.wedding - Seoul",
+  "Korea snap",
+  "Chalkak.wedding - Jeju",
+  "Pet snap",
+  "Chalkak.wedding - Melbourne",
+  "Chalkak.wedding - Busan",
+];
 
-interface NavCategory {
-  category: string;
-  items: NavItem[];
-}
-
-const navigation: NavCategory[] = [
-  {
-    category: "Photography",
-    items: [
-      { title: "Street Stories", href: "#street" },
-      { title: "Portraits", href: "#portraits" },
-      { title: "Nature", href: "#nature" },
-      { title: "Architecture", href: "#architecture" },
-    ],
-  },
-  {
-    category: "Journey",
-    items: [
-      { title: "Tokyo", href: "#tokyo" },
-      { title: "Melbourne", href: "#melbourne" },
-      { title: "Seoul", href: "#seoul" },
-    ],
-  },
+const journey = [
+  "Tokyo",
+  "Melbourne",
+  "They, or our love",
+  "1000 people of Melbourne",
+  "Become part of nature",
+  "The story of the city",
+  "Lost time and",
 ];
 
 export function PortfolioSidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
 
   return (
     <>
@@ -58,14 +49,15 @@ export function PortfolioSidebar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-72 bg-background z-50 
+          fixed top-0 left-0 h-screen w-80 bg-background z-50 
           transform transition-transform duration-300 ease-out
-          lg:translate-x-0 lg:static lg:z-0
+          lg:translate-x-0
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
-          border-r border-border/50
+          border-r border-border/30
+          overflow-y-auto
         `}
       >
-        <div className="h-full overflow-y-auto py-12 px-8">
+        <div className="py-8 px-10">
           {/* Close button for mobile */}
           <button
             onClick={() => setMobileOpen(false)}
@@ -76,51 +68,70 @@ export function PortfolioSidebar() {
           </button>
 
           {/* Logo / Name */}
-          <Link to="/" className="block mb-12">
-            <h1 className="font-serif text-xl font-semibold tracking-wide uppercase">
-              Your Name
+          <Link to="/" className="block mb-10">
+            <h1 className="font-serif text-2xl font-semibold tracking-wide text-primary">
+              HYUNBIN SHIN
             </h1>
           </Link>
 
-          {/* Welcome Link */}
-          <Link
-            to="/"
-            className="block nav-link mb-8 font-medium text-foreground"
-          >
-            Welcome to my story
-          </Link>
+          {/* Navigation */}
+          <nav className="space-y-6">
+            {/* Welcome Link */}
+            <a
+              href="#"
+              className="block text-sm font-semibold text-primary hover:text-nav-hover transition-colors"
+            >
+              Welcome to my story
+            </a>
 
-          {/* Navigation Categories */}
-          <nav className="space-y-8">
-            {navigation.map((category) => (
-              <div key={category.category}>
-                <h2 className="nav-category">{category.category}</h2>
-                <ul className="space-y-2 ml-0">
-                  {category.items.map((item) => (
-                    <li key={item.title}>
-                      <a
-                        href={item.href}
-                        className="nav-link block py-1"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {item.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
+            {/* Snap Photography Section */}
+            <div>
+              <h2 className="text-sm font-semibold text-primary mb-3">
+                Snap photography
+              </h2>
+              <ul className="space-y-2">
+                {snapPhotography.map((item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Contact Link */}
-          <div className="mt-12">
+            {/* Journey Section */}
+            <div>
+              <h2 className="text-sm font-semibold text-primary mb-3">
+                Journey
+              </h2>
+              <ul className="space-y-2">
+                {journey.map((item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact Link */}
             <Link
               to="/contact"
-              className="nav-category block hover:text-nav-hover transition-colors"
+              className="block text-sm font-semibold text-primary hover:text-nav-hover transition-colors"
             >
               Contact
             </Link>
-          </div>
+          </nav>
         </div>
       </aside>
     </>

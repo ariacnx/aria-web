@@ -3,20 +3,21 @@ import { PhotoGallery } from "@/components/PhotoGallery";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex w-full">
-      {/* Sidebar Navigation */}
+    <div className="min-h-screen w-full">
+      {/* Sidebar Navigation - Fixed */}
       <PortfolioSidebar />
 
-      {/* Main Content */}
-      <main className="flex-1 min-h-screen">
+      {/* Main Content - Offset for sidebar */}
+      <main className="lg:ml-80 min-h-screen">
         {/* Hero Section */}
-        <header className="pt-20 pb-12 px-6 lg:px-12 lg:pt-16">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="headline-serif mb-6">
+        <header className="pt-16 pb-10 px-8 lg:px-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
               Take pictures of ordinary things with special eyes
             </h2>
-            <p className="subtitle-serif max-w-2xl mx-auto">
-              I capture the quiet poetry of everyday moments. 
+            <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
+              I take pictures of ordinary things in our daily lives that flow inadvertently.
+              <br />
               I hope our lives are always like movies.
             </p>
           </div>
