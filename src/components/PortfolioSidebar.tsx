@@ -103,17 +103,33 @@ export function PortfolioSidebar() {
                 I Make Apps
               </h2>
               <ul className="space-y-2">
-                {snapPhotography.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
+                {snapPhotography.map((item) => {
+                  const isEatRecipe = item === "EAT - RECIPE APP";
+                  const content = (
+                    <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                       {item}
-                    </a>
-                  </li>
-                ))}
+                    </span>
+                  );
+                  return (
+                    <li key={item}>
+                      {isEatRecipe ? (
+                        <Link
+                          to="/eat-recipe-app"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <a
+                          href="#"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
