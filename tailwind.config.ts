@@ -57,6 +57,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "nav-hover": "hsl(var(--nav-hover))",
+        "photo-overlay": "hsl(var(--photo-overlay))",
+      },
+      fontFamily: {
+        serif: ["'Cormorant Garamond'", "serif"],
+        sans: ["'Inter'", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
