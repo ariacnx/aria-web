@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const snapPhotography = [
-  "Chalkak.wedding - Sydney",
-  "Chalkak.couple - Melbourne",
+  "EAT - RECIPE APP",
+  "Take your cancer screening testts plz",
   "Fashion snap",
   "Chalkak.wedding - Seoul",
   "Korea snap",
@@ -12,6 +12,19 @@ const snapPhotography = [
   "Pet snap",
   "Chalkak.wedding - Melbourne",
   "Chalkak.wedding - Busan",
+];
+
+const RandomInterests = [
+  "My reading list",
+  "My music list",
+  "My movie list",
+  "My travel list",
+  "My food list",
+  "My drink list",
+  "My sleep list",
+  "My art list",
+  "My wake up list",
+  "My dream list -> yangkehan",
 ];
 
 const journey = [
@@ -70,7 +83,7 @@ export function PortfolioSidebar() {
           {/* Logo / Name */}
           <Link to="/" className="block mb-10">
             <h1 className="font-serif text-2xl font-semibold tracking-wide text-primary">
-              HYUNBIN SHIN
+              ARIA CHEN
             </h1>
           </Link>
 
@@ -81,13 +94,13 @@ export function PortfolioSidebar() {
               href="#"
               className="block text-sm font-semibold text-primary hover:text-nav-hover transition-colors"
             >
-              Welcome to my story
+              Welcome :) lets chat if you are interested in my work
             </a>
 
-            {/* Snap Photography Section */}
+            {/* I Make Apps Section */}
             <div>
               <h2 className="text-sm font-semibold text-primary mb-3">
-                Snap photography
+                I Make Apps
               </h2>
               <ul className="space-y-2">
                 {snapPhotography.map((item) => (
@@ -101,6 +114,42 @@ export function PortfolioSidebar() {
                     </a>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Random Section */}
+            <div>
+              <h2 className="text-sm font-semibold text-primary mb-3">
+                Random
+              </h2>
+              <ul className="space-y-2">
+                {RandomInterests.map((item) => {
+                  const isReadingList = item === "My reading list";
+                  const content = (
+                    <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                      {item}
+                    </span>
+                  );
+                  return (
+                    <li key={item}>
+                      {isReadingList ? (
+                        <Link
+                          to="/reading-list"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <a
+                          href="#"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
