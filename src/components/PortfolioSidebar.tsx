@@ -21,10 +21,11 @@ const RandomInterests = [
   "My travel list",
   "My food list",
   "My drink list",
-  "My sleep list",
+  "My ice cream list",
   "My art list",
   "My wake up list",
   "My dream list -> yangkehan",
+  "I model a bit",
 ];
 
 const journey = [
@@ -141,6 +142,7 @@ export function PortfolioSidebar() {
               <ul className="space-y-2">
                 {RandomInterests.map((item) => {
                   const isReadingList = item === "My reading list";
+                  const isModelPhotos = item === "I model a bit";
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                       {item}
@@ -151,6 +153,13 @@ export function PortfolioSidebar() {
                       {isReadingList ? (
                         <Link
                           to="/reading-list"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : isModelPhotos ? (
+                        <Link
+                          to="/model-photos"
                           onClick={() => setMobileOpen(false)}
                         >
                           {content}
