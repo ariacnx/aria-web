@@ -3,8 +3,8 @@ import { ExternalLink } from "lucide-react";
 
 const APP_URL = "https://clean-eats-5xwr-five.vercel.app/";
 
-// Product demo images — replace with your own app screenshots when ready
-const DEMO_IMAGES = {
+// Fallback when src/assets/eat-recipe-app/ is empty
+const FALLBACK_IMAGES = {
   hero: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80",
   screens: [
     "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80",
@@ -12,6 +12,24 @@ const DEMO_IMAGES = {
     "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80",
   ],
 };
+
+// Load from src/assets/eat-recipe-app/ (glob avoids issues with spaces in filenames)
+const eatRecipeModules = import.meta.glob<{ default: string }>(
+  "../assets/eat-recipe-app/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
+  { eager: true }
+);
+
+const entries = Object.entries(eatRecipeModules)
+  .map(([path, mod]) => ({ path, url: mod.default }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+const heroUrl = entries[0]?.url ?? FALLBACK_IMAGES.hero;
+const screenUrls =
+  entries.length > 1
+    ? entries.slice(1, 4).map((e) => e.url)
+    : FALLBACK_IMAGES.screens;
+
+const DEMO_IMAGES = { hero: heroUrl, screens: screenUrls };
 
 const EatRecipeApp = () => {
   return (
@@ -57,7 +75,7 @@ const EatRecipeApp = () => {
               <img
                 src={DEMO_IMAGES.hero}
                 alt="Clean Eats — recipe and menu randomizer in use"
-                className="w-full aspect-[16/10] object-cover"
+                className="w-full h-auto block"
                 loading="eager"
               />
             </div>
