@@ -6,22 +6,22 @@ const wipProjects = [
     title: "Meditation App",
     description: "A calm, focused space for daily mindfulness practice",
     status: "In development",
-    color: "from-purple-100 to-purple-50",
-    borderColor: "border-purple-200/50",
+    color: "from-purple-200/30 to-purple-100/20",
+    borderColor: "border-purple-300/30",
   },
   {
     title: "RSS App",
     description: "Clean feed reader for staying updated",
     status: "In development",
-    color: "from-blue-100 to-blue-50",
-    borderColor: "border-blue-200/50",
+    color: "from-blue-200/30 to-blue-100/20",
+    borderColor: "border-blue-300/30",
   },
   {
     title: "Social Media Post App",
     description: "Tool for creating and scheduling content",
     status: "In development",
-    color: "from-green-100 to-green-50",
-    borderColor: "border-green-200/50",
+    color: "from-green-200/30 to-green-100/20",
+    borderColor: "border-green-300/30",
   },
 ];
 

@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 const snapPhotography = [
   "EAT - RECIPE APP",
-  "Omnihealth - Take your screening test",
+  "Omnihealth - Ur screening test",
   "WIP",
   "My work",
 ];
