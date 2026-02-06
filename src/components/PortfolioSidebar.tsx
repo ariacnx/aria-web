@@ -4,17 +4,13 @@ import { Menu, X } from "lucide-react";
 
 const snapPhotography = [
   "EAT - RECIPE APP",
-  "Take your cancer screening testts plz",
-  "Fashion snap",
-  "Chalkak.wedding - Seoul",
-  "Korea snap",
-  "Chalkak.wedding - Jeju",
-  "Pet snap",
-  "Chalkak.wedding - Melbourne",
-  "Chalkak.wedding - Busan",
+  "Omnihealth - Take your screening test",
+  "WIP",
+  "My work",
 ];
 
 const RandomInterests = [
+  "My work",
   "My reading list",
   "My music list",
   "My movie list",
@@ -106,6 +102,9 @@ export function PortfolioSidebar() {
               <ul className="space-y-2">
                 {snapPhotography.map((item) => {
                   const isEatRecipe = item === "EAT - RECIPE APP";
+                  const isOmnihealth = item === "Omnihealth - Take your screening test";
+                  const isWIP = item === "WIP";
+                  const isWork = item === "My work";
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                       {item}
@@ -116,6 +115,27 @@ export function PortfolioSidebar() {
                       {isEatRecipe ? (
                         <Link
                           to="/eat-recipe-app"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : isOmnihealth ? (
+                        <Link
+                          to="/omnihealth"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : isWIP ? (
+                        <Link
+                          to="/wip"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {content}
+                        </Link>
+                      ) : isWork ? (
+                        <Link
+                          to="/work"
                           onClick={() => setMobileOpen(false)}
                         >
                           {content}
