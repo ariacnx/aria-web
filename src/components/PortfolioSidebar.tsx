@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const snapPhotography = [
-  "EAT - RECIPE APP",
+  "EAT - Recipe App",
   "Omnihealth - Ur screening test",
   "WIP",
   "My work",
