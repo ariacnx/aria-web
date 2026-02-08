@@ -2,15 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-const snapPhotography = [
-  "EAT - Recipe App",
-  "Omnihealth - Ur screening test",
-  "WIP",
-  "My work",
+type NavItem = {
+  label: string;
+  to?: string;
+};
+
+const snapPhotography: NavItem[] = [
+  { label: "EAT - Recipe App", to: "/eat-recipe-app" },
+  { label: "Omnihealth - Ur Screening Test", to: "/omnihealth" },
+  { label: "WIP", to: "/wip" },
+  { label: "My work", to: "/work" },
 ];
 
 const RandomInterests = [
-  "My work",
   "My reading list",
   "My music list",
   "My movie list",
@@ -101,50 +105,19 @@ export function PortfolioSidebar() {
               </h2>
               <ul className="space-y-2">
                 {snapPhotography.map((item) => {
-                  const isEatRecipe = item === "EAT - RECIPE APP";
-                  const isOmnihealth = item === "Omnihealth - Take your screening test";
-                  const isWIP = item === "WIP";
-                  const isWork = item === "My work";
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                      {item}
+                      {item.label}
                     </span>
                   );
                   return (
-                    <li key={item}>
-                      {isEatRecipe ? (
-                        <Link
-                          to="/eat-recipe-app"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {content}
-                        </Link>
-                      ) : isOmnihealth ? (
-                        <Link
-                          to="/omnihealth"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {content}
-                        </Link>
-                      ) : isWIP ? (
-                        <Link
-                          to="/wip"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {content}
-                        </Link>
-                      ) : isWork ? (
-                        <Link
-                          to="/work"
-                          onClick={() => setMobileOpen(false)}
-                        >
+                    <li key={item.label}>
+                      {item.to ? (
+                        <Link to={item.to} onClick={() => setMobileOpen(false)}>
                           {content}
                         </Link>
                       ) : (
-                        <a
-                          href="#"
-                          onClick={() => setMobileOpen(false)}
-                        >
+                        <a href="#" onClick={() => setMobileOpen(false)}>
                           {content}
                         </a>
                       )}
