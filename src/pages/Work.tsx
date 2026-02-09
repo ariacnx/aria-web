@@ -1,44 +1,34 @@
+import { Link } from "react-router-dom";
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
 import geminiIcon from "@/assets/icons/gemini-icon.png";
 
-const GOOGLE_URL = "https://www.google.com/";
-const GEMINI_URL = "https://gemini.google.com/";
+const GOOGLE_EMAIL = "mailto:ariac@google.com";
+const BERKELEY_EMAIL = "mailto:ariachen@berkeley.edu";
 
 const highlights = [
   {
-    title: "Gemini · Dev Agent",
-    desc: "I launch Gemini and build developer agents that help people ship faster—focusing on clear UX and reliable flows.",
+    title: "Vertex AI · Gemini",
+    desc: "I launched Gemini 3 pro. Built model launch automation + work on AI infra",
   },
   {
-    title: "Product thinking",
-    desc: "I like crisp information architecture, minimal UI, and details that feel calm (spacing, type, motion).",
+    title: "Vertex AI · Agents",
+    desc: "Working on agent MCP servers and agent quality — happy to connect if you share similar interests",
   },
   {
-    title: "Execution",
-    desc: "From prototype → polished UI. I iterate quickly, test assumptions, and keep the experience simple.",
+    title: "Skydeck",
+    desc: "Built an AI note-taking app using an on-premise model with friends. It ranked Top 100 in the Productivity category shortly after launch.",
+    linkInDesc: {
+      phrase: "AI note-taking app",
+      url: "https://apps.apple.com/us/app/manta-memo/id6502863775",
+    },
   },
 ];
 
 const projects = [
-  {
-    title: "Omnihealth — Screening",
-    tag: "Product page + gallery",
-    to: "/omnihealth",
-    note: "A product-style case study page with screenshots + upload.",
-  },
-  {
-    title: "EAT — Recipe App",
-    tag: "Case study",
-    to: "/eat-recipe-app",
-    note: "A clean product page format for showcasing an app.",
-  },
-  {
-    title: "Model photos",
-    tag: "Gallery",
-    to: "/model-photos",
-    note: "Auto-loaded images from `src/assets/model/`.",
-  },
+  { title: "Clean Eat — the recipe app", to: "/eat-recipe-app" },
+  { title: "Omnihealth — Cancer screening test", to: "/omnihealth" },
+  { title: "WIP", to: "/wip" },
 ];
 
 const WorkPage = () => {
@@ -63,36 +53,22 @@ const WorkPage = () => {
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight">
               Hi, I’m Aria.
             </h1>
-            <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed mt-5 max-w-2xl mx-auto">
-              I work at Google. I launch Gemini, develop agents, and build calm,
-              clean product experiences.
-            </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href={GEMINI_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={BERKELEY_EMAIL}
                 className="inline-flex items-center gap-2 font-serif text-sm text-primary hover:text-primary/80 transition-colors group"
               >
-                <img
-                  src={geminiIcon}
-                  alt=""
-                  className="h-4 w-4"
-                  aria-hidden="true"
-                />
-                <span>Gemini</span>
-                <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <Mail className="h-3.5 w-3.5" aria-hidden />
+                <span>Cal alum</span>
               </a>
               <span className="hidden sm:block text-muted-foreground/60">·</span>
               <a
-                href={GOOGLE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={GOOGLE_EMAIL}
                 className="inline-flex items-center gap-2 font-serif text-sm text-primary hover:text-primary/80 transition-colors group"
               >
+                <Mail className="h-3.5 w-3.5" aria-hidden />
                 <span>Google</span>
-                <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
@@ -105,10 +81,7 @@ const WorkPage = () => {
               What I’m into
             </h2>
             <p className="font-serif text-muted-foreground leading-relaxed">
-              Minimal interfaces, thoughtful typography, and experiences that
-              feel like a quiet conversation. I like to keep pages airy and
-              structured: a clear headline, a few honest sections, and visuals
-              that do the talking.
+            I’m currently working at Google on agent development and quality, where I help launch Gemini, build agents, and ship products end to end. In my spare time, I enjoy building fun things independently — from product and UI to full engineering — bringing ideas to life end to end. ✨
             </p>
           </div>
 
@@ -127,42 +100,55 @@ const WorkPage = () => {
                     {h.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {h.desc}
+                    {"linkInDesc" in h && h.linkInDesc ? (
+                      <>
+                        {h.desc.split(h.linkInDesc.phrase).map((part, i, arr) =>
+                          i < arr.length - 1 ? (
+                            <span key={i}>
+                              {part}
+                              <a
+                                href={h.linkInDesc!.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-primary underline underline-offset-2 hover:text-primary/80 inline-flex items-center gap-0.5"
+                              >
+                                {h.linkInDesc!.phrase}
+                                <ExternalLink className="h-3 w-3" aria-hidden />
+                              </a>
+                            </span>
+                          ) : (
+                            part
+                          )
+                        )}
+                      </>
+                    ) : (
+                      h.desc
+                    )}
                   </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Work / projects */}
+          {/* Projects — grid */}
           <div className="space-y-6">
             <h2 className="font-serif text-xl font-normal text-primary">
-              Work
+              Projects
             </h2>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {projects.map((p) => (
-                <a
+                <Link
                   key={p.title}
-                  href={p.to}
-                  className="group rounded-lg border border-border/50 bg-background/60 backdrop-blur-sm shadow-sm p-6 hover:shadow-md transition-shadow"
+                  to={p.to}
+                  className="group rounded-lg border border-border/50 bg-background/60 backdrop-blur-sm shadow-sm p-6 hover:shadow-md transition-shadow flex items-center justify-between gap-4"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground">
-                        {p.tag}
-                      </p>
-                      <h3 className="font-serif text-lg text-primary mt-1">
-                        {p.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {p.note}
-                      </p>
-                    </div>
-                    <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
-                      →
-                    </span>
-                  </div>
-                </a>
+                  <span className="font-serif text-primary group-hover:text-primary/80 transition-colors">
+                    {p.title}
+                  </span>
+                  <span className="text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5">
+                    →
+                  </span>
+                </Link>
               ))}
             </div>
           </div>

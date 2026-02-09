@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
-import { Mail, Instagram, Camera, MessageCircle, Send } from "lucide-react";
+import { Mail, Instagram, MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const FORMSPREE_ID = "xwvnppwo";
@@ -36,52 +36,36 @@ const Contact = () => {
       <PortfolioSidebar />
 
       <main className="lg:ml-80 min-h-screen flex flex-col items-center justify-center px-6 py-16">
-        <div className="max-w-lg text-center mb-16">
-          <h1 className="font-serif text-4xl lg:text-5xl font-normal text-primary mb-8">
-            Let's create together
+        <div className="max-w-lg text-center mb-12">
+          <h1 className="font-serif text-4xl lg:text-5xl font-normal text-primary mb-6">
+            Let's chat
           </h1>
 
-          <p className="text-muted-foreground mb-12 leading-relaxed">
-            I'm always excited to collaborate on new projects, whether it's
-            capturing life's beautiful moments or bringing artistic visions to
-            life.
-          </p>
-
-          <div className="space-y-6">
+          <div className="space-y-4">
             <a
-              href="mailto:hello@yourname.com"
+              href="mailto:ariachen@berkeley.edu"
               className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary transition-colors text-lg group"
             >
-              <Mail className="h-5 w-5 transition-transform group-hover:scale-110" />
-              <span>hello@yourname.com</span>
+              <Mail className="h-5 w-5 shrink-0" />
+              <span>ariachen@berkeley.edu</span>
             </a>
-
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/aaaria_aa"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary transition-colors text-lg group"
             >
-              <Instagram className="h-5 w-5 transition-transform group-hover:scale-110" />
-              <span>@yourhandle</span>
+              <Instagram className="h-5 w-5 shrink-0" />
+              <span>@aaaria_aa</span>
             </a>
-
-            <div className="flex items-center justify-center gap-3 text-muted-foreground text-lg">
-              <Camera className="h-5 w-5" />
-              <span>Based in Your City</span>
-            </div>
           </div>
         </div>
 
-        {/* Feedback / comment section */}
         <div className="w-full max-w-md border border-border/50 rounded-lg bg-card shadow-sm p-6 text-left">
-          <h2 className="font-serif text-xl font-normal text-primary mb-2 flex items-center gap-2">
+          <h2 className="font-serif text-xl font-normal text-primary mb-4 flex items-center gap-2">
             <MessageCircle className="h-5 w-5 text-muted-foreground" />
-            Send feedback
+            Send a message
           </h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            Comments, suggestions, or just say hi — I'd love to hear from you.
-          </p>
 
           {feedbackStatus === "success" && (
             <p className="text-sm text-primary mb-4 font-medium">
@@ -103,7 +87,7 @@ const Contact = () => {
                 id="feedback-name"
                 type="text"
                 name="name"
-                placeholder="Your name (optional)"
+                placeholder="Name"
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
             </div>
@@ -115,7 +99,7 @@ const Contact = () => {
                 id="feedback-email"
                 type="email"
                 name="email"
-                placeholder="Your email (optional)"
+                placeholder="Email"
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
             </div>
@@ -126,7 +110,7 @@ const Contact = () => {
               <textarea
                 id="feedback-message"
                 name="message"
-                placeholder="Your feedback or comment..."
+                placeholder="Message"
                 rows={4}
                 required
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
@@ -134,7 +118,7 @@ const Contact = () => {
             </div>
             <Button type="submit" disabled={feedbackStatus === "sending"} className="w-full gap-2">
               <Send className="h-4 w-4" />
-              {feedbackStatus === "sending" ? "Sending..." : "Send feedback"}
+              {feedbackStatus === "sending" ? "Sending..." : "Send"}
             </Button>
           </form>
         </div>

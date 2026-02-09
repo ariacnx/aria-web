@@ -6,22 +6,22 @@ const wipProjects = [
     title: "Meditation App",
     description: "A calm, focused space for daily mindfulness practice",
     status: "In development",
-    color: "from-purple-200/30 to-purple-100/20",
-    borderColor: "border-purple-300/30",
+    gradient: "from-slate-200/40 to-slate-100/25",
+    borderColor: "border-slate-300/40",
   },
   {
     title: "RSS App",
-    description: "Clean feed reader for staying updated",
+    description: "Navigate in noise. Clean feed reader for staying updated",
     status: "In development",
-    color: "from-blue-200/30 to-blue-100/20",
-    borderColor: "border-blue-300/30",
+    gradient: "from-amber-200/40 to-yellow-100/25",
+    borderColor: "border-amber-300/40",
   },
   {
     title: "Social Media Post App",
-    description: "Tool for creating and scheduling content",
+    description: "An AI tool for creating and scheduling content",
     status: "In development",
-    color: "from-green-200/30 to-green-100/20",
-    borderColor: "border-green-300/30",
+    gradient: "from-green-400/25 to-green-300/15",
+    borderColor: "border-green-400/30",
   },
 ];
 
@@ -48,16 +48,11 @@ const WIPPage = () => {
               {wipProjects.map((project, index) => (
                 <div
                   key={index}
-                  className={`
-                    group relative overflow-hidden rounded-lg border ${project.borderColor} 
-                    bg-gradient-to-br ${project.color} 
-                    shadow-sm hover:shadow-md transition-all duration-300
-                    min-h-[280px] flex flex-col
-                  `}
+                  className={`group relative overflow-hidden rounded-lg border ${project.borderColor} bg-gradient-to-br ${project.gradient} shadow-sm hover:shadow-md transition-all duration-300 min-h-[280px] flex flex-col`}
                 >
-                  {/* Placeholder content */}
+                  {/* Main content */}
                   <div className="flex-1 p-8 flex flex-col items-center justify-center text-center">
-                    <div className="mb-4 p-4 rounded-full bg-background/60 backdrop-blur-sm">
+                    <div className="mb-4 p-4 rounded-full bg-background/40 backdrop-blur-sm">
                       <Sparkles className="h-8 w-8 text-muted-foreground" />
                     </div>
                     <h3 className="font-serif text-xl font-normal text-primary mb-2">
@@ -71,9 +66,6 @@ const WIPPage = () => {
                       <span>{project.status}</span>
                     </div>
                   </div>
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/5 transition-colors duration-300" />
                 </div>
               ))}
             </div>

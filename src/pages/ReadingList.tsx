@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
 
-// Placeholder book covers – reuse gallery assets for demo
-import tokyoTemple from "@/assets/gallery/tokyo-temple.jpg";
-import streetMist from "@/assets/gallery/street-mist.jpg";
-import coupleBeach from "@/assets/gallery/couple-beach.jpg";
-import architecture from "@/assets/gallery/architecture.jpg";
-import natureDew from "@/assets/gallery/nature-dew.jpg";
-import cameraHands from "@/assets/gallery/camera-hands.jpg";
+// Cover images from src/assets/reading/
+import xingzheCover from "@/assets/reading/yuqiuyu.jpg";
+import sahaladegushiCover from "@/assets/reading/sanmao.jpg";
+import wenxuehuiyiluCover from "@/assets/reading/muxin.jpg";
+import unbearableLightnessCover from "@/assets/reading/the unbearable lightness of being.jpg";
 
 interface ReadingItem {
   id: string;
@@ -18,100 +15,14 @@ interface ReadingItem {
   description?: string;
 }
 
-// Open Library search response (minimal shape we use)
-interface OpenLibraryDoc {
-  key: string;
-  title?: string;
-  author_name?: string[];
-  first_publish_year?: number;
-  cover_i?: number;
-  first_sentence?: string[];
-}
-
-const OPEN_LIBRARY_COVER_URL = "https://covers.openlibrary.org/b/id";
-
-async function fetchBookFromOpenLibrary(query: string): Promise<ReadingItem | null> {
-  try {
-    const res = await fetch(
-      `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=1`
-    );
-    const data = await res.json();
-    const doc: OpenLibraryDoc | undefined = data.docs?.[0];
-    if (!doc) return null;
-
-    const author = doc.author_name?.join(", ") ?? "—";
-    const year = doc.first_publish_year?.toString();
-    const cover =
-      doc.cover_i != null
-        ? `${OPEN_LIBRARY_COVER_URL}/${doc.cover_i}-M.jpg`
-        : "";
-    const description = doc.first_sentence?.join(" ") ?? "";
-
-    const title = query === "The Unbearable Lightness of Being" ? query : (doc.title ?? query);
-
-    return {
-      id: `ol-${doc.key.replace(/\//g, "-")}`,
-      cover,
-      title,
-      author,
-      year,
-      description: description || undefined,
-    };
-  } catch {
-    return null;
-  }
-}
-
-// Known Kafka work titles in English (Open Library often returns German titles)
-const KAFKA_TITLE_MAP: Record<string, string> = {
-  "Der Proceß": "The Trial",
-  "Der Proceß.": "The Trial",
-  "Das Schloß": "The Castle",
-  "Das Schloß.": "The Castle",
-  "Die Verwandlung": "The Metamorphosis",
-};
-
-function docToReadingItem(doc: OpenLibraryDoc): ReadingItem {
-  const author = doc.author_name?.join(", ") ?? "—";
-  const year = doc.first_publish_year?.toString();
-  const cover =
-    doc.cover_i != null
-      ? `${OPEN_LIBRARY_COVER_URL}/${doc.cover_i}-M.jpg`
-      : "";
-  const description = doc.first_sentence?.join(" ") ?? "";
-  const rawTitle = doc.title ?? "";
-  const title = KAFKA_TITLE_MAP[rawTitle] ?? rawTitle;
-
-  return {
-    id: `ol-${doc.key.replace(/\//g, "-")}`,
-    cover,
-    title,
-    author,
-    year,
-    description: description || undefined,
-  };
-}
-
-async function fetchBooksByAuthor(authorName: string, limit = 5): Promise<ReadingItem[]> {
-  try {
-    const res = await fetch(
-      `https://openlibrary.org/search.json?author=${encodeURIComponent(authorName)}&limit=${limit}`
-    );
-    const data = await res.json();
-    const docs: OpenLibraryDoc[] = data.docs ?? [];
-    return docs.map(docToReadingItem);
-  } catch {
-    return [];
-  }
-}
-
 const readingList: ReadingItem[] = [
-  { id: "1", cover: tokyoTemple, title: "Tokyo", author: "Various", year: "2025", description: "" },
-  { id: "2", cover: streetMist, title: "Dawn Walker", author: "Anonymous", year: "2024", description: "" },
-  { id: "3", cover: coupleBeach, title: "Golden Hour Love", author: "—", year: "2024", description: "" },
-  { id: "4", cover: architecture, title: "Concrete Dreams", author: "—", year: "2023", description: "" },
-  { id: "5", cover: natureDew, title: "Morning Bloom", author: "—", year: "2023", description: "" },
-  { id: "6", cover: cameraHands, title: "The Moment", author: "—", year: "2022", description: "" },
+  { id: "7", cover: xingzheCover, title: "行者无疆", author: "余秋雨", year: "", description: "" },
+  { id: "8", cover: sahaladegushiCover, title: "撒哈拉的故事", author: "三毛", year: "", description: "" },
+  { id: "9", cover: wenxuehuiyiluCover, title: "文学回忆录", author: "木心", year: "", description: "" },
+  { id: "10", cover: unbearableLightnessCover, title: "The Unbearable Lightness of Being", author: "Milan Kundera", year: "1984", description: "" },
+  { id: "11", cover: "", title: "The Trial", author: "Franz Kafka", year: "", description: "" },
+  { id: "12", cover: "", title: "The Castle", author: "Franz Kafka", year: "", description: "" },
+  { id: "13", cover: "", title: "The Metamorphosis", author: "Franz Kafka", year: "", description: "" },
 ];
 
 function ReadingCard({ cover, title, author, year }: ReadingItem) {
@@ -195,19 +106,7 @@ const EXAMPLE_BOOK_QUERY = "The Unbearable Lightness of Being";
 const KAFKA_AUTHOR = "Franz Kafka";
 
 const ReadingListPage = () => {
-  const [fetchedBook, setFetchedBook] = useState<ReadingItem | null>(null);
-  const [kafkaBooks, setKafkaBooks] = useState<ReadingItem[]>([]);
-
-  useEffect(() => {
-    fetchBookFromOpenLibrary(EXAMPLE_BOOK_QUERY).then(setFetchedBook);
-    fetchBooksByAuthor(KAFKA_AUTHOR, 3).then(setKafkaBooks);
-  }, []);
-
-  const displayList = [
-    ...(fetchedBook ? [fetchedBook] : []),
-    ...kafkaBooks,
-    ...readingList,
-  ];
+  const displayList = readingList;
 
   return (
     <div className="min-h-screen w-full">
@@ -220,7 +119,7 @@ const ReadingListPage = () => {
               My reading list
             </h2>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
-              Books and words that stay with me.
+              Recents and Favorites :D
             </p>
           </div>
         </header>
