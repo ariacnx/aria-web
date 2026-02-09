@@ -20,9 +20,11 @@ const readingList: ReadingItem[] = [
   { id: "8", cover: sahaladegushiCover, title: "撒哈拉的故事", author: "三毛", year: "", description: "" },
   { id: "9", cover: wenxuehuiyiluCover, title: "文学回忆录", author: "木心", year: "", description: "" },
   { id: "10", cover: unbearableLightnessCover, title: "The Unbearable Lightness of Being", author: "Milan Kundera", year: "1984", description: "" },
-  { id: "11", cover: "", title: "The Trial", author: "Franz Kafka", year: "", description: "" },
-  { id: "12", cover: "", title: "The Castle", author: "Franz Kafka", year: "", description: "" },
-  { id: "13", cover: "", title: "The Metamorphosis", author: "Franz Kafka", year: "", description: "" },
+  { id: "11", cover: "", title: "Poor Charlie's Almanack", author: "Charles T. Munger", year: "", description: "" },
+  { id: "12", cover: "", title: "围城", author: "钱钟书", year: "", description: "" },
+  { id: "13", cover: "", title: "The Trial", author: "Franz Kafka", year: "", description: "" },
+  { id: "14", cover: "", title: "The Castle", author: "Franz Kafka", year: "", description: "" },
+  { id: "15", cover: "", title: "Why Fish Don't Exist", author: "Lulu Miller", year: "2020", description: "" },
 ];
 
 function ReadingCard({ cover, title, author, year }: ReadingItem) {
