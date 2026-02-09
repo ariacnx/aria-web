@@ -258,8 +258,10 @@ const OmnihealthPage = () => {
         </div>
         <header className="pt-16 pb-10 px-8 lg:px-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6 flex flex-nowrap items-center justify-center gap-2 whitespace-nowrap">
-              Omnihealth — Take your{" "}
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center">
+              Omnihealth —
+              <br className="sm:hidden" />
+              Take your{" "}
               <a
                 href={APP_URL}
                 target="_blank"

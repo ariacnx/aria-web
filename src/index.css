@@ -220,12 +220,19 @@
 
   @media (max-width: 768px) {
     .masonry-grid {
-      column-count: 1;
+      column-count: 2;
+      column-gap: 0.375rem;
     }
   }
 
   .masonry-item {
     break-inside: avoid;
     margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .masonry-item {
+      margin-bottom: 0.375rem;
+    }
   }
 }
