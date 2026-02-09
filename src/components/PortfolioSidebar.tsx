@@ -16,27 +16,29 @@ const snapPhotography: NavItem[] = [
 
 const RandomInterests = [
   "My reading list",
-  "My music list",
-  "My movie list",
-  "My travel list",
-  "My food list",
-  "My drink list",
-  "My ice cream list",
-  "My art list",
-  "My wake up list",
-  "My dream list -> yangkehan",
-  "I model a bit",
+  // Commented out for main (keep on development):
+  // "My music list",
+  // "My movie list",
+  // "My travel list",
+  // "My food list",
+  // "My drink list",
+  // "My ice cream list",
+  // "My art list",
+  // "My wake up list",
+  // "My dream list -> yangkehan",
+  // "I model a bit",
 ];
 
-const journey = [
-  "Tokyo",
-  "Melbourne",
-  "They, or our love",
-  "1000 people of Melbourne",
-  "Become part of nature",
-  "The story of the city",
-  "Lost time and",
-];
+// Commented out for main (keep on development):
+// const journey = [
+//   "Tokyo",
+//   "Melbourne",
+//   "They, or our love",
+//   "1000 people of Melbourne",
+//   "Become part of nature",
+//   "The story of the city",
+//   "Lost time and",
+// ];
 
 export function PortfolioSidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -135,7 +137,7 @@ export function PortfolioSidebar() {
               <ul className="space-y-2">
                 {RandomInterests.map((item) => {
                   const isReadingList = item === "My reading list";
-                  const isModelPhotos = item === "I model a bit";
+                  const isModelPhotos = false; // "I model a bit" commented out on main
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                       {item}
@@ -171,7 +173,7 @@ export function PortfolioSidebar() {
               </ul>
             </div>
 
-            {/* Journey Section */}
+            {/* Journey Section — commented out for main (keep on development)
             <div>
               <h2 className="text-sm font-semibold text-primary mb-3">
                 Journey
@@ -190,6 +192,7 @@ export function PortfolioSidebar() {
                 ))}
               </ul>
             </div>
+            */}
 
             {/* Contact Link */}
             <Link
