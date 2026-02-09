@@ -39,9 +39,6 @@ const WorkPage = () => {
       <main className="lg:ml-80 min-h-screen bg-muted/20">
         <header className="pt-16 pb-10 px-8 lg:px-16">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground mb-4">
-              Welcome to my story
-            </p>
             <div className="flex items-center justify-center mb-5">
               <img
                 src={geminiIcon}
