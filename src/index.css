@@ -96,6 +96,15 @@
     --nav-hover: 40 20% 80%;
     --photo-overlay: 220 20% 5%;
   }
+
+  /* Omnihealth / cancer screening page: green accent */
+  .omnihealth-accent-green {
+    --primary: 142 28% 28%;
+    --primary-foreground: 40 33% 98%;
+    --ring: 142 28% 28%;
+    --accent: 142 18% 88%;
+    --accent-foreground: 142 28% 22%;
+  }
 }
 
 @layer base {

@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
 import {
   Upload,
@@ -7,10 +8,19 @@ import {
   Download,
   DownloadCloud,
   ExternalLink,
+  UserCircle,
+  BookOpen,
+  Heart,
+  ArrowRightCircle,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import omnihealthBannerVideo from "@/assets/omnihealth/u9151188686_httpss.mj.runygBZuRDSKvY_create_minimum_hand_move_8ac8cee3-a131-4112-a1c8-a18c6c96445a_2.mp4";
+import website1Img from "@/assets/omnihealth/website1.png";
+import website2Img from "@/assets/omnihealth/website2.png";
+import omnihealthLifestyleImg from "@/assets/omnihealth/Gemini_Generated_Image_xvqkp6xvqkp6xvqk.png";
 
-const APP_URL = "https://omnihealth.example.com/";
+const APP_URL = "https://omnihealth.info";
 
 // Fallback images if you haven't uploaded anything yet
 const FALLBACK_IMAGES = {
@@ -32,7 +42,6 @@ const omniEntries = Object.entries(omnihealthModules)
   .map(([path, mod]) => ({ path, url: mod.default }))
   .sort((a, b) => a.path.localeCompare(b.path));
 
-const assetHeroUrl = omniEntries[0]?.url ?? FALLBACK_IMAGES.hero;
 const assetScreenUrls =
   omniEntries.length > 1
     ? omniEntries.slice(1, 4).map((e) => e.url)
@@ -220,7 +229,6 @@ const OmnihealthPage = () => {
     }
   }, [images]);
 
-  const demoHero = images[0]?.dataUrl ?? images[0]?.preview ?? assetHeroUrl;
   const demoScreens =
     images.length > 1
       ? images.slice(1, 4).map((img) => img.dataUrl ?? img.preview)
@@ -230,69 +238,174 @@ const OmnihealthPage = () => {
     <div className="min-h-screen w-full">
       <PortfolioSidebar />
 
-      <main className="lg:ml-80 min-h-screen bg-muted/30">
+      <main className="lg:ml-80 min-h-screen bg-muted/30 omnihealth-accent-green">
+        {/* Video banner — crop top only, bottom stays visible */}
+        <div className="grid grid-cols-3 gap-0 overflow-hidden h-[220px] w-full">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="relative w-full h-full overflow-hidden">
+              <video
+                src={omnihealthBannerVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute left-0 w-full h-[125%] object-cover origin-top"
+                style={{ top: 0, objectPosition: "center top", transform: "translateY(-10%)" }}
+                aria-hidden
+              />
+            </div>
+          ))}
+        </div>
         <header className="pt-16 pb-10 px-8 lg:px-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              Omnihealth — Screening
-            </h1>
-            <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
-              Take your screening test. A simple flow that helps users answer a few questions and understand next steps.
-            </p>
-          </div>
-        </header>
-
-        <section className="px-4 lg:px-8 pb-16 max-w-4xl mx-auto space-y-16 relative z-10">
-          <div>
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-serif text-lg text-primary hover:text-primary/80 transition-colors group"
-            >
-              <span>Open product</span>
-              <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6 flex flex-nowrap items-center justify-center gap-2 whitespace-nowrap">
+              Omnihealth — Take your{" "}
               <a
                 href={APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline break-all"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 font-serif text-2xl md:text-3xl lg:text-4xl font-normal text-primary-foreground hover:bg-primary/90 transition-colors"
               >
-                {APP_URL}
+                cancer screening
+                <ExternalLink className="h-5 w-5 md:h-6 md:w-6 shrink-0" aria-hidden />
+              </a>
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              This project is in collaboration with my dearest friend Ivy Yu.
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary underline underline-offset-2 hover:text-primary/80"
+              >
+                https://omnihealth.info
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden />
               </a>
             </p>
           </div>
+        </header>
 
-          {/* Hero product image */}
-          <div className="space-y-3">
-            <h2 className="font-serif text-xl font-normal text-primary">
-              See it in action
-            </h2>
-            <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm">
-              <img
-                src={demoHero}
-                alt="Omnihealth screening flow hero"
-                className="w-full h-auto block"
-                loading="eager"
-              />
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Tip: upload your screenshots below (or add files into{" "}
-              <code className="bg-muted px-1 rounded text-xs">
-                src/assets/omnihealth/
-              </code>
-              ) to replace the demo images.
+        {/* Intro */}
+        <div className="px-8 lg:px-16 pb-10 relative z-10">
+          <div className="max-w-2xl mx-auto space-y-4 font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p>
+              For those who know me, you know I've never hesitated to share the miracle story of my dad. For eight years, across different countries, I walked beside him through a cancer journey that can only be described as a miracle.
             </p>
+            <p>
+              Having gone through so many stages of this with him, I truly believe prevention and early screening are the most effective ways to reduce the odds. So here I am, building the{" "}
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-semibold underline underline-offset-2 hover:text-primary/80"
+              >
+                cancer screening quiz
+              </a>{" "}
+              I wish my family had earlier — <strong>something simple that helps you understand which cancer screenings you should consider, based on your own risk.</strong>
+            </p>
+            <p>
+              This is a small nonprofit effort and still a little under construction. If you're willing to take a quick test, I would be grateful if you could try it and share it with your friends and family.
+            </p>
+            <p>
+              If this mission resonates with you — whether you are a medical professional, survivor, caregiver, or someone who simply cares — please let me know how to make it more useful{" "}
+              <Link to="/contact" className="underline underline-offset-2 hover:text-primary/80">
+                here
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+
+        <section className="px-4 lg:px-8 pb-16 max-w-4xl mx-auto space-y-16 relative z-10">
+          {/* How it works — 4 steps in boxes */}
+          <div className="space-y-6">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              How it works
+            </h2>
+            <div className="space-y-4">
+              {[
+                {
+                  icon: UserCircle,
+                  title: "Share your information",
+                  desc: "Tell us a little about yourself — your age, background, health history, and any relevant factors.",
+                },
+                {
+                  icon: BookOpen,
+                  title: "Evidence-based analysis",
+                  desc: "Your information is thoughtfully compared against established medical guidelines and reviewed with professional knowledge in mind.",
+                },
+                {
+                  icon: Heart,
+                  title: "Understand your risk",
+                  desc: "You receive a clear, simple overview of your personal risk factors — what may matter, and why.",
+                },
+                {
+                  icon: ArrowRightCircle,
+                  title: "Know what to do next",
+                  desc: "Get gentle, practical guidance on screenings to consider, when to act, and how to take the next step early.",
+                },
+              ].map((step, i) => {
+                const Icon = step.icon;
+                return (
+                <div key={i}>
+                  <div className="rounded-lg border border-border/50 bg-card shadow-sm p-6 flex gap-4 items-start">
+                    <div className="shrink-0 p-2 rounded-lg bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-lg font-medium text-primary mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                  {i < 3 && (
+                    <div className="flex justify-center py-2 text-muted-foreground">
+                      <ChevronDown className="h-5 w-5" />
+                    </div>
+                  )}
+                </div>
+              );
+              })}
+            </div>
           </div>
 
           {/* Product screenshot grid */}
           <div className="space-y-6">
             <h2 className="font-serif text-xl font-normal text-primary">
-              How it works
+              See it in action
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1 aspect-video">
+                <img
+                  src={website1Img}
+                  alt="Omnihealth landing page — screening quiz and health plan"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1 aspect-video">
+                <img
+                  src={website2Img}
+                  alt="Omnihealth family history step"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1 aspect-video">
+                <img
+                  src={omnihealthLifestyleImg}
+                  alt="Omnihealth — wellness, gardening, and healthy living"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {demoScreens.map((src, i) => (
                 <div
                   key={i}
@@ -301,15 +414,15 @@ const OmnihealthPage = () => {
                   <img
                     src={src}
                     alt={`Omnihealth feature ${i + 1}`}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
-          {/* Video demo placeholder */}
+          {/* Video demo placeholder — commented out
           <div className="space-y-3">
             <h2 className="font-serif text-xl font-normal text-primary">
               Video demo
@@ -320,8 +433,9 @@ const OmnihealthPage = () => {
               </p>
             </div>
           </div>
+          */}
 
-          {/* Upload section (so you can update screenshots easily) */}
+          {/* Upload section — commented out
           <div className="space-y-6">
             <div className="flex items-center justify-between gap-4">
               <h2 className="font-serif text-xl font-normal text-primary">
@@ -398,7 +512,7 @@ const OmnihealthPage = () => {
                       <img
                         src={image.dataUrl || image.preview}
                         alt={image.name}
-                        className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                       <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -441,6 +555,7 @@ const OmnihealthPage = () => {
               </div>
             )}
           </div>
+          */}
         </section>
       </main>
     </div>

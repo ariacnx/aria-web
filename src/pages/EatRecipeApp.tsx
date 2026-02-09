@@ -1,35 +1,20 @@
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Bookmark, Hand, Share2 } from "lucide-react";
+import cleanEatDemoVideo from "@/assets/eat-recipe-app/clean eat demo.mov";
+import bannerVideo from "@/assets/eat-recipe-app/u9151188686_use_the_same_colour_and_Japanese_style_line_drawi_bf70eed6-c66d-468a-879e-26811c731233_3.mp4";
 
 const APP_URL = "https://clean-eats-5xwr-five.vercel.app/";
 
-// Fallback when src/assets/eat-recipe-app/ is empty
-const FALLBACK_IMAGES = {
-  hero: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&q=80",
-  screens: [
-    "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80",
-    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80",
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80",
-  ],
-};
+// Fallback when no GIF in assets
+const FALLBACK_GIF =
+  "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80";
 
-// Load from src/assets/eat-recipe-app/ (glob avoids issues with spaces in filenames)
-const eatRecipeModules = import.meta.glob<{ default: string }>(
-  "../assets/eat-recipe-app/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
+// Load GIF from src/assets/eat-recipe-app/
+const eatRecipeGifs = import.meta.glob<{ default: string }>(
+  "../assets/eat-recipe-app/*.{gif,GIF}",
   { eager: true }
 );
-
-const entries = Object.entries(eatRecipeModules)
-  .map(([path, mod]) => ({ path, url: mod.default }))
-  .sort((a, b) => a.path.localeCompare(b.path));
-
-const heroUrl = entries[0]?.url ?? FALLBACK_IMAGES.hero;
-const screenUrls =
-  entries.length > 1
-    ? entries.slice(1, 4).map((e) => e.url)
-    : FALLBACK_IMAGES.screens;
-
-const DEMO_IMAGES = { hero: heroUrl, screens: screenUrls };
+const gifEntry = Object.entries(eatRecipeGifs).map(([, mod]) => mod.default)[0];
 
 const EatRecipeApp = () => {
   return (
@@ -37,16 +22,62 @@ const EatRecipeApp = () => {
       <PortfolioSidebar />
 
       <main className="lg:ml-80 min-h-screen">
-        <header className="pt-16 pb-10 px-8 lg:px-16">
+        {/* ========== VERSION A: Stripe above title (current) ========== */}
+        <div className="relative overflow-hidden h-[200px] w-full">
+          <video
+            src={bannerVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden
+          />
+        </div>
+        <header className="pt-12 pb-10 px-8 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              EAT — Recipe App
+              Clean Eat — the recipe app
             </h1>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
-              Clean Eats · Menu Randomizer. Pick what to cook without the guesswork.
+              Make Home Cooking Sweet
             </p>
           </div>
         </header>
+
+        {/* ========== VERSION B: Video behind title (previous) — comment out Version A and uncomment below to use ========== */}
+        {/* <header className="relative overflow-hidden min-h-[280px] flex items-center justify-center">
+          <video
+            src={bannerVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-background/60" aria-hidden />
+          <div className="relative z-10 pt-16 pb-10 px-8 lg:px-16 text-center max-w-3xl mx-auto">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
+              Clean Eat — the recipe app
+            </h1>
+            <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
+              Make Home Cooking Sweet
+            </p>
+          </div>
+        </header> */}
+
+        {/* Intro */}
+        <div className="px-8 lg:px-16 pb-10">
+          <div className="max-w-2xl mx-auto space-y-4 font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
+            <p>
+              Honestly, I'm still not sure what this app should be called, but it started from something simple: I love home cooking. Every time I tweak my recipe a little, it feels like a small creative process worth keeping, revisiting, and building on.
+            </p>
+            <p>
+              So this app became a place to capture those iterations — making home cooking a little more fun, personal, and effortless. Add your recipes, and if you don't upload a photo, the app can generate one for you. During holidays or special moments, you can easily share your menu of the day with friends and family.
+            </p>
+          </div>
+        </div>
 
         <section className="px-4 lg:px-8 pb-16 max-w-4xl mx-auto space-y-16">
           <div>
@@ -66,52 +97,65 @@ const EatRecipeApp = () => {
             </p>
           </div>
 
-          {/* Hero product image */}
-          <div className="space-y-3">
-            <h2 className="font-serif text-xl font-normal text-primary">
-              See it in action
-            </h2>
-            <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm">
-              <img
-                src={DEMO_IMAGES.hero}
-                alt="Clean Eats — recipe and menu randomizer in use"
-                className="w-full h-auto block"
-                loading="eager"
-              />
-            </div>
-          </div>
-
-          {/* Product screenshot grid */}
+          {/* How it works — three text cards + GIF in one row */}
           <div className="space-y-6">
             <h2 className="font-serif text-xl font-normal text-primary">
               How it works
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {DEMO_IMAGES.screens.map((src, i) => (
-                <div
-                  key={i}
-                  className="group relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1"
-                >
-                  <img
-                    src={src}
-                    alt={`Clean Eats feature ${i + 1}`}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="rounded-lg border border-border/50 bg-card shadow-sm p-6 flex flex-col justify-center min-h-[200px]">
+                <h3 className="font-serif text-lg font-medium text-primary mb-2 flex items-center gap-2">
+                  <Bookmark className="h-5 w-5 text-muted-foreground shrink-0" />
+                  Curate
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Save your unique recipes
+                </p>
+              </div>
+              <div className="rounded-lg border border-border/50 bg-card shadow-sm p-6 flex flex-col justify-center min-h-[200px]">
+                <h3 className="font-serif text-lg font-medium text-primary mb-2 flex items-center gap-2">
+                  <Hand className="h-5 w-5 text-muted-foreground shrink-0" />
+                  Swipe
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Decide what to eat
+                </p>
+              </div>
+              <div className="rounded-lg border border-border/50 bg-muted/30 shadow-sm overflow-hidden min-h-[200px]">
+                <img
+                  src={gifEntry ?? FALLBACK_GIF}
+                  alt="Clean Eats in action"
+                  className="w-full h-full min-h-[200px] object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="rounded-lg border border-border/50 bg-card shadow-sm p-6 flex flex-col justify-center min-h-[200px]">
+                <h3 className="font-serif text-lg font-medium text-primary mb-2 flex items-center gap-2">
+                  <Share2 className="h-5 w-5 text-muted-foreground shrink-0" />
+                  Share
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Invite others to the table
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Video demo placeholder — add your video later */}
+          {/* Video demo */}
           <div className="space-y-3">
             <h2 className="font-serif text-xl font-normal text-primary">
               Video demo
             </h2>
-            <div className="border border-border/50 rounded-lg bg-muted/30 aspect-video flex items-center justify-center min-h-[240px] shadow-sm">
-              <p className="font-serif text-muted-foreground text-center px-4">
-                Video demo coming soon
-              </p>
+            <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm aspect-video min-h-[240px]">
+              <video
+                src={cleanEatDemoVideo}
+                controls
+                playsInline
+                className="w-full h-full object-cover"
+                poster=""
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </section>

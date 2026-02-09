@@ -8,8 +8,8 @@ type NavItem = {
 };
 
 const snapPhotography: NavItem[] = [
-  { label: "EAT - Recipe App", to: "/eat-recipe-app" },
-  { label: "Omnihealth - Ur Screening Test", to: "/omnihealth" },
+  { label: "Clean Eat — the recipe app", to: "/eat-recipe-app" },
+  { label: "Omnihealth — Take your screening test", to: "/omnihealth" },
   { label: "WIP", to: "/wip" },
   { label: "My work", to: "/work" },
 ];
