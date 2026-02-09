@@ -81,7 +81,10 @@ const WorkPage = () => {
               What I’m into
             </h2>
             <p className="font-serif text-muted-foreground leading-relaxed">
-            I’m currently working at Google on agent development and quality, where I help launch Gemini, build agents, and ship products end to end. In my spare time, I enjoy building fun things independently — from product and UI to full engineering — bringing ideas to life end to end. ✨
+              I’m currently working at Google on agent development, quality and AI infra.
+            </p>
+            <p className="font-serif text-muted-foreground leading-relaxed mt-3">
+              On the side, I enjoy bringing fun ideas to life end to end (product + UI +full engineering). ✨
             </p>
           </div>
 

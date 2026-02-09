@@ -11,7 +11,6 @@ const snapPhotography: NavItem[] = [
   { label: "Clean Eat — the recipe app", to: "/eat-recipe-app" },
   { label: "Omnihealth — Take your screening test", to: "/omnihealth" },
   { label: "WIP", to: "/wip" },
-  { label: "My work", to: "/work" },
 ];
 
 const RandomInterests = [
@@ -99,6 +98,15 @@ export function PortfolioSidebar() {
             >
               Welcome :) lets chat if you are interested in my work
             </a>
+
+            {/* My work */}
+            <Link
+              to="/work"
+              onClick={() => setMobileOpen(false)}
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              My work
+            </Link>
 
             {/* I Make Apps Section */}
             <div>

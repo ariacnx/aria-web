@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import omnihealthBannerVideo from "@/assets/omnihealth/u9151188686_httpss.mj.runygBZuRDSKvY_create_minimum_hand_move_8ac8cee3-a131-4112-a1c8-a18c6c96445a_2.mp4";
+import omnihealthRunningVideo from "@/assets/omnihealth/u9151188686_httpss.mj.runA3mH5X-pwFM_dog_and_the_man_running__956db1f3-991e-432c-a3f3-d79c9dbba236_3.mp4";
 import website1Img from "@/assets/omnihealth/website1.png";
 import website2Img from "@/assets/omnihealth/website2.png";
-import omnihealthLifestyleImg from "@/assets/omnihealth/Gemini_Generated_Image_xvqkp6xvqkp6xvqk.png";
 
 const APP_URL = "https://omnihealth.info";
 
@@ -389,17 +389,20 @@ const OmnihealthPage = () => {
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1 aspect-video">
-                <img
-                  src={website2Img}
-                  alt="Omnihealth family history step"
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
+                <video
+                  src={omnihealthRunningVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover object-center"
+                  aria-label="Omnihealth — dog and the man running"
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1 aspect-video">
                 <img
-                  src={omnihealthLifestyleImg}
-                  alt="Omnihealth — wellness, gardening, and healthy living"
+                  src={website2Img}
+                  alt="Omnihealth family history step"
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
