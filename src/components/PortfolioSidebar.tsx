@@ -14,7 +14,7 @@ const snapPhotography: NavItem[] = [
 ];
 
 const RandomInterests = [
-  "My reading list",
+  "My reading and podcast list",
   // Commented out for main (keep on development):
   // "My music list",
   // "My movie list",
@@ -144,7 +144,7 @@ export function PortfolioSidebar() {
               </h2>
               <ul className="space-y-2">
                 {RandomInterests.map((item) => {
-                  const isReadingList = item === "My reading list";
+                  const isReadingList = item === "My reading and podcast list";
                   const isModelPhotos = false; // "I model a bit" commented out on main
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">

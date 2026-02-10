@@ -118,7 +118,7 @@ const ReadingListPage = () => {
         <header className="pt-16 pb-10 px-8 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              My reading list
+              My reading and podcast list
             </h2>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
               Recents and Favorites :D
@@ -138,11 +138,42 @@ const ReadingListPage = () => {
         </section>
 
         {/* Separate row for each book */}
-        <section className="px-4 lg:px-8 pb-16">
+        <section className="px-4 lg:px-8 pb-10">
           <div className="max-w-2xl mx-auto">
             {displayList.map((item) => (
               <BookRow key={item.id} {...item} />
             ))}
+          </div>
+        </section>
+
+        {/* Podcast list */}
+        <section className="px-4 lg:px-8 pb-16">
+          <div className="max-w-2xl mx-auto">
+            <h3 className="font-serif text-xl font-normal text-primary mb-4">
+              My podcast list
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://www.hubermanlab.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif text-base text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                >
+                  Huberman Lab
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.acquired.fm/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif text-base text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                >
+                  Acquired
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
       </main>
