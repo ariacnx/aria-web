@@ -1,5 +1,6 @@
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
 import FallingPineNeedles from "@/components/FallingPineNeedles";
+import CrystalOrb from "@/components/CrystalOrb";
 import { ExternalLink } from "lucide-react";
 
 const APP_URL = "https://github.com/ariacnx/grove";
@@ -116,6 +117,18 @@ const CheerMeUpApp = () => {
                   {tech}
                 </span>
               ))}
+            </div>
+          </div>
+
+          {/* Crystal Orb Trio */}
+          <div className="space-y-4">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              The Orbs
+            </h2>
+            <div className="flex justify-center items-center gap-8">
+              <CrystalOrb size={140} pineColor="#3e5a3a" sheenColor="#a5d6a7" />
+              <CrystalOrb size={140} pineColor="#5c4a2a" sheenColor="#c4a97d" />
+              <CrystalOrb size={140} pineColor="#4a5a4a" sheenColor="#ffffff" />
             </div>
           </div>
 
