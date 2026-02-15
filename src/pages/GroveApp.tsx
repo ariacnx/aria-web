@@ -1,8 +1,8 @@
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
 import { ExternalLink } from "lucide-react";
 
-const APP_URL = "https://github.com/ariacnx/cheer-me-up";
-const REPO_URL = "https://github.com/ariacnx/cheer-me-up";
+const APP_URL = "https://github.com/ariacnx/grove";
+const REPO_URL = "https://github.com/ariacnx/grove";
 
 // Fallback images
 const FALLBACK_IMAGES = {
@@ -14,9 +14,9 @@ const FALLBACK_IMAGES = {
   ],
 };
 
-// Load screenshots from src/assets/cheer-me-up/
+// Load screenshots from src/assets/grove/
 const cheerModules = import.meta.glob<{ default: string }>(
-  "../assets/cheer-me-up/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
+  "../assets/grove/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
   { eager: true }
 );
 
@@ -41,7 +41,7 @@ const CheerMeUpApp = () => {
         <header className="pt-16 pb-10 px-8 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              Cheer Me Up
+              Grove
             </h1>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
               AI-powered meditation & comfort sessions. Generative pine visuals, 
@@ -125,7 +125,7 @@ const CheerMeUpApp = () => {
             <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm">
               <img
                 src={DEMO_IMAGES.hero}
-                alt="Cheer Me Up — meditation session in progress"
+                alt="Grove — meditation session in progress"
                 className="w-full h-auto block"
                 loading="eager"
               />
@@ -145,7 +145,7 @@ const CheerMeUpApp = () => {
                 >
                   <img
                     src={src}
-                    alt={`Cheer Me Up feature ${i + 1}`}
+                    alt={`Grove feature ${i + 1}`}
                     className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                     loading="lazy"
                   />
