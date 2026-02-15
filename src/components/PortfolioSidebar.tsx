@@ -8,7 +8,7 @@ type NavItem = {
 };
 
 const snapPhotography: NavItem[] = [
-  { label: "Cheer Me Up", to: "/cheer-me-up" },
+  // { label: "Cheer Me Up", to: "/cheer-me-up" },
   { label: "Clean Eat — the recipe app", to: "/eat-recipe-app" },
   { label: "Omnihealth — Take your screening test", to: "/omnihealth" },
   { label: "WIP", to: "/wip" },
