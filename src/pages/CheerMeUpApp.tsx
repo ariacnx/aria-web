@@ -1,7 +1,7 @@
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
 import { ExternalLink } from "lucide-react";
 
-const APP_URL = "https://cheer-me-up-ariacnx.vercel.app/";
+const APP_URL = "https://github.com/ariacnx/cheer-me-up";
 const REPO_URL = "https://github.com/ariacnx/cheer-me-up";
 
 // Fallback images
@@ -60,7 +60,7 @@ const CheerMeUpApp = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-serif text-lg text-primary hover:text-primary/80 transition-colors group"
               >
-                <span>Open app</span>
+                <span>View on GitHub</span>
                 <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <p className="mt-1 text-sm text-muted-foreground">
