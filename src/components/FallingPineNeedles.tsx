@@ -41,22 +41,22 @@ export default function FallingPineNeedles() {
         startX: sx, startY: sy, length: len, angle,
         curve: (Math.random() - 0.5) * 0.4,
         thickness: thick, depth,
-        swaySpeed: 0.15 + Math.random() * 0.25,
-        swayAmount: 0.015 + Math.random() * 0.025,
+        swaySpeed: 0.12 + Math.random() * 0.2,
+        swayAmount: 0.025 + Math.random() * 0.04,
         phase: Math.random() * Math.PI * 2,
         children: [], needles: [],
       };
 
-      const needleCount = Math.floor(len / (6 * dpr));
+      const needleCount = Math.floor(len / (5 * dpr));
       for (let i = 0; i < needleCount; i++) {
-        const t = 0.15 + (i / needleCount) * 0.8;
+        const t = 0.1 + (i / needleCount) * 0.85;
         for (const side of [-1, 1]) {
           branch.needles.push({
-            t, angle: side * (0.3 + Math.random() * 0.5),
-            length: (10 + Math.random() * 18) * dpr,
-            swaySpeed: 0.4 + Math.random() * 0.7,
+            t, angle: side * (0.25 + Math.random() * 0.55),
+            length: (16 + Math.random() * 28) * dpr,
+            swaySpeed: 0.3 + Math.random() * 0.6,
             phase: Math.random() * Math.PI * 2,
-            opacity: 0.12 + Math.random() * 0.2,
+            opacity: 0.14 + Math.random() * 0.22,
           });
         }
       }
@@ -106,11 +106,37 @@ export default function FallingPineNeedles() {
         x: Math.random() * w, y: Math.random() * h,
         rotation: Math.random() * Math.PI,
         rotSpeed: (Math.random() - 0.5) * 0.5,
-        fallSpeed: (0.12 + Math.random() * 0.25) * dpr,
-        swayAmount: (12 + Math.random() * 20) * dpr,
-        swaySpeed: 0.2 + Math.random() * 0.4,
-        length: (7 + Math.random() * 12) * dpr,
-        opacity: 0.08 + Math.random() * 0.12,
+        fallSpeed: (0.1 + Math.random() * 0.22) * dpr,
+        swayAmount: (15 + Math.random() * 25) * dpr,
+        swaySpeed: 0.15 + Math.random() * 0.35,
+        length: (10 + Math.random() * 16) * dpr,
+        opacity: 0.08 + Math.random() * 0.14,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+
+    // Falling whole leaf clusters — small branch segments with needles
+    interface FallingLeaf {
+      x: number; y: number;
+      rotation: number; rotSpeed: number;
+      fallSpeed: number; swayAmount: number; swaySpeed: number;
+      stemLength: number; needleCount: number; needleLength: number;
+      opacity: number; phase: number;
+    }
+
+    const fallingLeaves: FallingLeaf[] = [];
+    for (let i = 0; i < 12; i++) {
+      fallingLeaves.push({
+        x: Math.random() * w, y: Math.random() * h,
+        rotation: Math.random() * Math.PI,
+        rotSpeed: (Math.random() - 0.5) * 0.3,
+        fallSpeed: (0.08 + Math.random() * 0.15) * dpr,
+        swayAmount: (20 + Math.random() * 35) * dpr,
+        swaySpeed: 0.1 + Math.random() * 0.25,
+        stemLength: (25 + Math.random() * 35) * dpr,
+        needleCount: 4 + Math.floor(Math.random() * 5),
+        needleLength: (12 + Math.random() * 18) * dpr,
+        opacity: 0.1 + Math.random() * 0.12,
         phase: Math.random() * Math.PI * 2,
       });
     }
@@ -181,6 +207,46 @@ export default function FallingPineNeedles() {
         ctx.lineWidth = 1 * dpr;
         ctx.lineCap = 'round';
         ctx.stroke();
+      }
+
+      // Draw falling whole leaves
+      for (const lf of fallingLeaves) {
+        lf.y += lf.fallSpeed;
+        lf.x += Math.sin(t * lf.swaySpeed + lf.phase) * 0.25 * dpr;
+        lf.rotation += lf.rotSpeed * 0.006;
+        if (lf.y > h + 40) { lf.y = -60; lf.x = Math.random() * w; }
+
+        const cx = lf.x + Math.sin(t * lf.swaySpeed + lf.phase) * lf.swayAmount;
+        const cy = lf.y;
+        const cos = Math.cos(lf.rotation);
+        const sin = Math.sin(lf.rotation);
+
+        // Draw stem
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + cos * lf.stemLength, cy + sin * lf.stemLength);
+        ctx.strokeStyle = `rgba(62, 90, 58, ${lf.opacity * 1.2})`;
+        ctx.lineWidth = 1.5 * dpr;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        // Draw needles along stem
+        for (let ni = 0; ni < lf.needleCount; ni++) {
+          const nt = 0.15 + (ni / lf.needleCount) * 0.75;
+          const nx = cx + cos * lf.stemLength * nt;
+          const ny = cy + sin * lf.stemLength * nt;
+          const nSway = Math.sin(t * 0.8 + ni * 1.5 + lf.phase) * 0.1;
+
+          for (const side of [-1, 1]) {
+            const na = lf.rotation + side * (0.4 + nSway);
+            ctx.beginPath();
+            ctx.moveTo(nx, ny);
+            ctx.lineTo(nx + Math.cos(na) * lf.needleLength, ny + Math.sin(na) * lf.needleLength);
+            ctx.strokeStyle = `rgba(62, 90, 58, ${lf.opacity})`;
+            ctx.lineWidth = 1 * dpr;
+            ctx.stroke();
+          }
+        }
       }
 
       animRef.current = requestAnimationFrame(animate);
