@@ -34,8 +34,8 @@ function PineBranch({ height, radius, tilt, position, color }: { height: number;
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
     const t = clock.getElapsedTime();
-    groupRef.current.rotation.z = tilt + Math.sin(t * 0.8) * 0.05;
-    groupRef.current.rotation.x = Math.cos(t * 0.7) * 0.04;
+    groupRef.current.rotation.z = tilt + Math.sin(t * 0.5) * 0.12;
+    groupRef.current.rotation.x = Math.cos(t * 0.45) * 0.1;
   });
 
   return (
@@ -75,7 +75,7 @@ function GlassSphere({ radius, sheenColor }: { radius: number; sheenColor: strin
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const t = clock.getElapsedTime();
-    meshRef.current.scale.setScalar(1 + Math.sin(t * 0.5) * 0.04);
+    meshRef.current.scale.setScalar(1 + Math.sin(t * 0.35) * 0.12);
   });
 
   return (

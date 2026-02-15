@@ -126,15 +126,15 @@ const CheerMeUpApp = () => {
             <h2 className="font-serif text-xl font-normal text-primary">
               The Orbs
             </h2>
-            <div className="flex justify-center items-center gap-8" style={{ minHeight: 160 }}>
-              <Suspense fallback={<div className="w-[140px] h-[140px] rounded-full bg-muted/50 animate-pulse" />}>
-                <div className="border-0" style={{ width: 140, height: 140 }}><CrystalOrb size={140} pineColor="#3e5a3a" sheenColor="#a5d6a7" /></div>
+            <div className="flex justify-center items-center gap-16" style={{ minHeight: 260 }}>
+              <Suspense fallback={<div className="w-[200px] h-[200px] rounded-full bg-muted/50 animate-pulse" />}>
+                <div className="border-0" style={{ width: 200, height: 200 }}><CrystalOrb size={200} pineColor="#3e5a3a" sheenColor="#a5d6a7" /></div>
               </Suspense>
-              <Suspense fallback={<div className="w-[140px] h-[140px] rounded-full bg-muted/50 animate-pulse" />}>
-                <div className="border-0" style={{ width: 140, height: 140 }}><CrystalOrb size={140} pineColor="#5c4a2a" sheenColor="#c4a97d" /></div>
+              <Suspense fallback={<div className="w-[200px] h-[200px] rounded-full bg-muted/50 animate-pulse" />}>
+                <div className="border-0" style={{ width: 200, height: 200 }}><CrystalOrb size={200} pineColor="#5c4a2a" sheenColor="#c4a97d" /></div>
               </Suspense>
-              <Suspense fallback={<div className="w-[140px] h-[140px] rounded-full bg-muted/50 animate-pulse" />}>
-                <div className="border-0" style={{ width: 140, height: 140 }}><CrystalOrb size={140} pineColor="#4a5a4a" sheenColor="#ffffff" /></div>
+              <Suspense fallback={<div className="w-[200px] h-[200px] rounded-full bg-muted/50 animate-pulse" />}>
+                <div className="border-0" style={{ width: 200, height: 200 }}><CrystalOrb size={200} pineColor="#4a5a4a" sheenColor="#ffffff" /></div>
               </Suspense>
             </div>
           </div>
