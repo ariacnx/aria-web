@@ -1,0 +1,174 @@
+import { PortfolioSidebar } from "@/components/PortfolioSidebar";
+import { ExternalLink } from "lucide-react";
+
+const APP_URL = "https://cheer-me-up-ariacnx.vercel.app/";
+const REPO_URL = "https://github.com/ariacnx/cheer-me-up";
+
+// Fallback images
+const FALLBACK_IMAGES = {
+  hero: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80",
+  screens: [
+    "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80",
+    "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=80",
+    "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=600&q=80",
+  ],
+};
+
+// Load screenshots from src/assets/cheer-me-up/
+const cheerModules = import.meta.glob<{ default: string }>(
+  "../assets/cheer-me-up/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
+  { eager: true }
+);
+
+const entries = Object.entries(cheerModules)
+  .map(([path, mod]) => ({ path, url: mod.default }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+const heroUrl = entries[0]?.url ?? FALLBACK_IMAGES.hero;
+const screenUrls =
+  entries.length > 1
+    ? entries.slice(1, 4).map((e) => e.url)
+    : FALLBACK_IMAGES.screens;
+
+const DEMO_IMAGES = { hero: heroUrl, screens: screenUrls };
+
+const CheerMeUpApp = () => {
+  return (
+    <div className="min-h-screen w-full">
+      <PortfolioSidebar />
+
+      <main className="lg:ml-80 min-h-screen">
+        <header className="pt-16 pb-10 px-8 lg:px-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
+              Cheer Me Up
+            </h1>
+            <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
+              AI-powered meditation & comfort sessions. Generative pine visuals, 
+              personalized audio by Gemini TTS.
+            </p>
+          </div>
+        </header>
+
+        <section className="px-4 lg:px-8 pb-16 max-w-4xl mx-auto space-y-16">
+          {/* Links */}
+          <div className="flex flex-wrap gap-6">
+            <div>
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-serif text-lg text-primary hover:text-primary/80 transition-colors group"
+              >
+                <span>Open app</span>
+                <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <p className="mt-1 text-sm text-muted-foreground">
+                <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="underline break-all">
+                  {APP_URL}
+                </a>
+              </p>
+            </div>
+            <div>
+              <a
+                href={REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-serif text-lg text-primary hover:text-primary/80 transition-colors group"
+              >
+                <span>Source code</span>
+                <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* About */}
+          <div className="space-y-4">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              About
+            </h2>
+            <div className="font-serif text-base text-muted-foreground leading-relaxed space-y-3">
+              <p>
+                A wellness app that creates personalized audio meditation and encouragement sessions 
+                based on how you're feeling. Two modes: gentle meditative comfort, or raw tough love.
+              </p>
+              <p>
+                The visual language draws from Ruth Asawa's organic wire sculptures — generative 
+                pine branches on the intro screen flow into a Three.js crystal orb with pine inside, 
+                creating a cohesive botanical world.
+              </p>
+            </div>
+          </div>
+
+          {/* Tech */}
+          <div className="space-y-4">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              Built with
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "React", "Three.js", "Framer Motion", "Gemini TTS", "Gemini 2.5 Pro", "Tailwind CSS", "TypeScript"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 rounded-full text-sm font-serif border border-border/50 text-muted-foreground bg-muted/30"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Hero product image */}
+          <div className="space-y-3">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              See it in action
+            </h2>
+            <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm">
+              <img
+                src={DEMO_IMAGES.hero}
+                alt="Cheer Me Up — meditation session in progress"
+                className="w-full h-auto block"
+                loading="eager"
+              />
+            </div>
+          </div>
+
+          {/* Screenshots grid */}
+          <div className="space-y-6">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              How it works
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {DEMO_IMAGES.screens.map((src, i) => (
+                <div
+                  key={i}
+                  className="group relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm ring-0 ring-border/20 transition-shadow hover:shadow-md hover:ring-1"
+                >
+                  <img
+                    src={src}
+                    alt={`Cheer Me Up feature ${i + 1}`}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Video demo placeholder */}
+          <div className="space-y-3">
+            <h2 className="font-serif text-xl font-normal text-primary">
+              Video demo
+            </h2>
+            <div className="border border-border/50 rounded-lg bg-muted/30 aspect-video flex items-center justify-center min-h-[240px] shadow-sm">
+              <p className="font-serif text-muted-foreground text-center px-4">
+                Video demo coming soon
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+export default CheerMeUpApp;

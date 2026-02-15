@@ -8,6 +8,7 @@ type NavItem = {
 };
 
 const snapPhotography: NavItem[] = [
+  { label: "Cheer Me Up", to: "/cheer-me-up" },
   { label: "Clean Eat — the recipe app", to: "/eat-recipe-app" },
   { label: "Omnihealth — Take your screening test", to: "/omnihealth" },
   { label: "WIP", to: "/wip" },
@@ -15,36 +16,13 @@ const snapPhotography: NavItem[] = [
 
 const RandomInterests = [
   "My reading and podcast list",
-  // Commented out for main (keep on development):
-  // "My music list",
-  // "My movie list",
-  // "My travel list",
-  // "My food list",
-  // "My drink list",
-  // "My ice cream list",
-  // "My art list",
-  // "My wake up list",
-  // "My dream list -> yangkehan",
-  // "I model a bit",
 ];
-
-// Commented out for main (keep on development):
-// const journey = [
-//   "Tokyo",
-//   "Melbourne",
-//   "They, or our love",
-//   "1000 people of Melbourne",
-//   "Become part of nature",
-//   "The story of the city",
-//   "Lost time and",
-// ];
 
 export function PortfolioSidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      {/* Mobile menu button */}
       <button
         onClick={() => setMobileOpen(true)}
         className="fixed top-6 left-6 z-50 lg:hidden p-2 hover:bg-secondary rounded-sm transition-colors"
@@ -53,7 +31,6 @@ export function PortfolioSidebar() {
         <Menu className="h-5 w-5" />
       </button>
 
-      {/* Mobile overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden"
@@ -61,7 +38,6 @@ export function PortfolioSidebar() {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         className={`
           fixed top-0 left-0 h-screen w-80 bg-background z-50 
@@ -73,7 +49,6 @@ export function PortfolioSidebar() {
         `}
       >
         <div className="py-8 px-10">
-          {/* Close button for mobile */}
           <button
             onClick={() => setMobileOpen(false)}
             className="absolute top-6 right-6 lg:hidden p-2 hover:bg-secondary rounded-sm transition-colors"
@@ -82,16 +57,13 @@ export function PortfolioSidebar() {
             <X className="h-5 w-5" />
           </button>
 
-          {/* Logo / Name */}
           <Link to="/" className="block mb-10">
             <h1 className="font-serif text-2xl font-semibold tracking-wide text-primary">
               ARIA CHEN
             </h1>
           </Link>
 
-          {/* Navigation */}
           <nav className="space-y-6">
-            {/* Welcome Link */}
             <a
               href="#"
               className="block text-sm font-semibold text-primary hover:text-nav-hover transition-colors"
@@ -99,7 +71,6 @@ export function PortfolioSidebar() {
               Welcome :) lets chat if you are interested in my work
             </a>
 
-            {/* My work */}
             <Link
               to="/work"
               onClick={() => setMobileOpen(false)}
@@ -108,7 +79,6 @@ export function PortfolioSidebar() {
               My work
             </Link>
 
-            {/* I Make Apps Section */}
             <div>
               <h2 className="text-sm font-semibold text-primary mb-3">
                 I Make Apps
@@ -137,7 +107,6 @@ export function PortfolioSidebar() {
               </ul>
             </div>
 
-            {/* Random Section */}
             <div>
               <h2 className="text-sm font-semibold text-primary mb-3">
                 Random
@@ -145,7 +114,6 @@ export function PortfolioSidebar() {
               <ul className="space-y-2">
                 {RandomInterests.map((item) => {
                   const isReadingList = item === "My reading and podcast list";
-                  const isModelPhotos = false; // "I model a bit" commented out on main
                   const content = (
                     <span className="block text-sm text-muted-foreground hover:text-primary transition-colors">
                       {item}
@@ -154,24 +122,11 @@ export function PortfolioSidebar() {
                   return (
                     <li key={item}>
                       {isReadingList ? (
-                        <Link
-                          to="/reading-list"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {content}
-                        </Link>
-                      ) : isModelPhotos ? (
-                        <Link
-                          to="/model-photos"
-                          onClick={() => setMobileOpen(false)}
-                        >
+                        <Link to="/reading-list" onClick={() => setMobileOpen(false)}>
                           {content}
                         </Link>
                       ) : (
-                        <a
-                          href="#"
-                          onClick={() => setMobileOpen(false)}
-                        >
+                        <a href="#" onClick={() => setMobileOpen(false)}>
                           {content}
                         </a>
                       )}
@@ -181,28 +136,6 @@ export function PortfolioSidebar() {
               </ul>
             </div>
 
-            {/* Journey Section — commented out for main (keep on development)
-            <div>
-              <h2 className="text-sm font-semibold text-primary mb-3">
-                Journey
-              </h2>
-              <ul className="space-y-2">
-                {journey.map((item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            */}
-
-            {/* Contact Link */}
             <Link
               to="/contact"
               className="block text-sm font-semibold text-primary hover:text-nav-hover transition-colors"

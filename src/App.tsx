@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import ReadingList from "./pages/ReadingList";
 import EatRecipeApp from "./pages/EatRecipeApp";
+import CheerMeUpApp from "./pages/CheerMeUpApp";
 import ModelPhotos from "./pages/ModelPhotos";
 import Omnihealth from "./pages/Omnihealth";
 import Work from "./pages/Work";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/reading-list" element={<ReadingList />} />
           <Route path="/eat-recipe-app" element={<EatRecipeApp />} />
+          <Route path="/cheer-me-up" element={<CheerMeUpApp />} />
           <Route path="/model-photos" element={<ModelPhotos />} />
           <Route path="/omnihealth" element={<Omnihealth />} />
           <Route path="/work" element={<Work />} />
