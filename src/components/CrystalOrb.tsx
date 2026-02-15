@@ -144,11 +144,11 @@ interface CrystalOrbProps {
 
 export default function CrystalOrb({ size = 200, pineColor = '#3e5a3a', sheenColor = '#a5d6a7' }: CrystalOrbProps) {
   return (
-    <div style={{ width: size, height: size, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 0 30px rgba(165, 214, 167, 0.15)' }}>
+    <div style={{ width: size, height: size, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 0 30px rgba(165, 214, 167, 0.15)', border: 'none' }}>
       <Canvas
         camera={{ position: [0, 0, 8.5], fov: 45 }}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.8 }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', border: 'none' }}
       >
         <CrystalScene pineColor={pineColor} sheenColor={sheenColor} />
       </Canvas>
