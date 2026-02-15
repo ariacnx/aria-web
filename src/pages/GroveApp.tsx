@@ -1,4 +1,5 @@
 import { PortfolioSidebar } from "@/components/PortfolioSidebar";
+import FallingPineNeedles from "@/components/FallingPineNeedles";
 import { ExternalLink } from "lucide-react";
 
 const APP_URL = "https://github.com/ariacnx/grove";
@@ -34,10 +35,11 @@ const DEMO_IMAGES = { hero: heroUrl, screens: screenUrls };
 
 const CheerMeUpApp = () => {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full relative">
       <PortfolioSidebar />
+      <FallingPineNeedles />
 
-      <main className="lg:ml-80 min-h-screen">
+      <main className="lg:ml-80 min-h-screen relative z-10">
         <header className="pt-16 pb-10 px-8 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
