@@ -37,10 +37,10 @@ const EatRecipeApp = () => {
         <header className="pt-12 pb-10 px-8 lg:px-16">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              Clean Eat — the recipe app
+              Forkcasts
             </h1>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
-              Make Home Cooking Sweet
+              Home Cooking, Curated
             </p>
           </div>
         </header>
@@ -59,10 +59,10 @@ const EatRecipeApp = () => {
           <div className="absolute inset-0 bg-background/60" aria-hidden />
           <div className="relative z-10 pt-16 pb-10 px-8 lg:px-16 text-center max-w-3xl mx-auto">
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal text-primary leading-tight mb-6">
-              Clean Eat — the recipe app
+              Forkcasts
             </h1>
             <p className="font-serif text-base md:text-lg text-muted-foreground leading-relaxed">
-              Make Home Cooking Sweet
+              Home Cooking, Curated
             </p>
           </div>
         </header> */}
@@ -124,7 +124,7 @@ const EatRecipeApp = () => {
               <div className="rounded-lg border border-border/50 bg-muted/30 shadow-sm overflow-hidden min-h-[200px]">
                 <img
                   src={gifEntry ?? FALLBACK_GIF}
-                  alt="Clean Eats in action"
+                  alt="Forkcasts in action"
                   className="w-full h-full min-h-[200px] object-cover"
                   loading="lazy"
                 />
