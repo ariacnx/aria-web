@@ -95,6 +95,9 @@ const EatRecipeApp = () => {
                 {APP_URL}
               </a>
             </p>
+            <p className="mt-2 text-sm text-muted-foreground font-serif italic">
+              iOS app coming soon
+            </p>
           </div>
 
           {/* How it works — three text cards + GIF in one row */}
