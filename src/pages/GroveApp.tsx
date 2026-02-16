@@ -139,18 +139,20 @@ const CheerMeUpApp = () => {
             </div>
           </div>
 
-          {/* Hero product image */}
+          {/* Live app embed */}
           <div className="space-y-3">
             <h2 className="font-serif text-xl font-normal text-primary">
-              See it in action
+              Try it
             </h2>
-            <div className="relative overflow-hidden rounded-lg border border-border/50 bg-muted/30 shadow-sm">
-              <img
-                src={DEMO_IMAGES.hero}
-                alt="Grove — meditation session in progress"
-                className="w-full h-auto block"
-                loading="eager"
-              />
+            <div className="flex justify-center">
+              <div className="relative w-[375px] h-[812px] rounded-[40px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.2)] border-[8px] border-white">
+                <iframe
+                  src="https://cheer-me-up-ariacnxs-projects.vercel.app"
+                  className="w-full h-full border-none"
+                  title="Grove — live demo"
+                  allow="microphone"
+                />
+              </div>
             </div>
           </div>
 
